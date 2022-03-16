@@ -1,5 +1,5 @@
 {
-  "name": "monitor-web",
+  "name": "monitor-dom",
   "version": "1.0.1-alpha.0",
   "description": "web端的监控sdk",
   "keywords": [
@@ -31,5 +31,6 @@
   "devDependencies": {
     "webpack": "^5.70.0",
     "webpack-node-externals": "^3.0.0"
-  }
+  },
+  "gitHead": "1002ed495e68da563f507c831d47a3ff32a69982"
 }
