@@ -1,6 +1,6 @@
 {
   "name": "monitor-dom",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "web端的监控sdk",
   "keywords": [
     "monitor",
