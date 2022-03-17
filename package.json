@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap --use-workspaces"
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "build-web": "lerna exec --scope monitor-dom build:pkg"
   }
 }

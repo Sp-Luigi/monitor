@@ -7,23 +7,25 @@
     "web",
     "react"
   ],
+  "files": [
+    "dist",
+    "dist/**/*"
+  ],
   "author": "zard <467540052@qq.com\n> LuckyChou710 <>",
   "homepage": "https://github.com/Sp-Luigi/monitor#readme",
   "license": "MIT",
-  "main": "index.js",
+  "main": "./dist/main.min.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sp-Luigi/monitor.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "webpack"
   },
   "bugs": {
     "url": "https://github.com/Sp-Luigi/monitor/issues"
@@ -32,5 +34,8 @@
     "webpack": "^5.70.0",
     "webpack-node-externals": "^3.0.0"
   },
-  "gitHead": "1002ed495e68da563f507c831d47a3ff32a69982"
+  "gitHead": "1002ed495e68da563f507c831d47a3ff32a69982",
+  "dependencies": {
+    "webpack-cli": "^4.9.2"
+  }
 }

@@ -1,4 +1,4 @@
-# `monitor-web`
+# `monitor-dom`
 
 > TODO: description
 
