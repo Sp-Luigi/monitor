@@ -30,12 +30,8 @@
   "bugs": {
     "url": "https://github.com/Sp-Luigi/monitor/issues"
   },
-  "devDependencies": {
-    "webpack": "^5.70.0",
-    "webpack-node-externals": "^3.0.0"
-  },
   "gitHead": "1002ed495e68da563f507c831d47a3ff32a69982",
   "dependencies": {
-    "webpack-cli": "^4.9.2"
+    "typescript": "^4.6.2"
   }
 }

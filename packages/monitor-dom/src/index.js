@@ -1,9 +1,1 @@
-function monitorWeb (){
-    return 'hello'
-};
-
-export {
-  monitorWeb
-};
-
-export default monitorWeb;
+import monitorWeb from './core'
