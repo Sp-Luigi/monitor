@@ -43,13 +43,13 @@ declare module 'monitor-dom'{
 	}
 	
 	// sdk的plugin
-	export interface Plugin<T extends EventTypes = EventTypes, C extends BasicConfig = BasicConfig> {
+	export interface Plugin<T extends EventTypes,C extends BasicConfig> {
 		// 事件枚举
 		name: T
 		// 监控事件，并在该事件中用notify通知订阅中心
-		monitor: (this: C, notify: (eventName: T, data: any) => void) => void
+		monitor: (this: C,notify: (eventName: T, data: any) => void) => void
 		// 在monitor中触发数据并将数据传入当前函数，拿到数据做数据格式转换(会将tranform放入Subscrib的handers)
-		transform?: (this: C, collectedData: any) => any
+		transform?: (this: C,collectedData: any) => any
 	}
 
 	export type useFunc = (plugin: Plugin[]) => void
@@ -59,8 +59,27 @@ declare module 'monitor-dom'{
 		app_id: string, // 监控的产品id，应该保证唯一性
 		appVersion: string, // app版本
 		serverDomain: string, // 监控后端的dns
-		routeMode: routeMode, // 所属web-application的路由模式，默认为All
-		options: Options, // sdk可配置选项
-		use: useFunc //初始化插件
 	}
+
+	// transport类:  保存基础配置以及发送监控的请求
+	export interface ITransport extends BasicConfig{
+		// 是否是由sdk发起的监控请求
+		isSdkTransportUrl:(url: string) => boolean,
+		// 获得基础配置
+		getConfig: () => BasicConfig,
+		// 通过不同的事件发送不同的请求以及内容
+		notify: (eventType: EventTypes, data: any) => void,
+	}
+
+	// sdk的config
+	export interface SdkConfig {
+		transport: ITransport,
+		options: Options,
+		use: useFunc //初始化插件
+		plugins: Plugin[],
+		routeMode: routeMode, // 所属web-application的路由模式，默认为All,会根据routeMode来监听对应的路由事件
+	}
+
+	// 初始化sdk的内容
+	export type ConstructorType = Omit<SdkConfig,'transport' | 'options' | 'plugins'> & BasicConfig
 }
