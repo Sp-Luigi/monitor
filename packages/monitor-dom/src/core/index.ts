@@ -24,9 +24,13 @@ export default class MonitorWeb implements BasicConfig{
 	// 执行插件的monitor方法来绑定plugin
 	use(plugins: Plugin<EventTypes,BasicConfig>[]){
 		// 绑定plugin的this并且执行其中的monitor方法来进行监控
-		plugins.every(() => {
-
+		plugins.every((plugin) => {
+			plugin.monitor()
 		},this);
 	}
 
+	// 发送请求到后端的方法以及一些其余的操作
+	notify(data){
+
+	}
 }
