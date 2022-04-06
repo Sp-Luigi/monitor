@@ -13,8 +13,19 @@ export default class Transport implements ITransport{
 		this.options = options;
 	}
 
+	// 判断一个请求是否为监控的sdk后端请求
 	isSdkTransportUrl(url: string){
-		return false;
+		const ipAddress = url.split('?')[0]; // get请求去掉后面跟随的参数
+		const regExp = this.serverDomain.split('').map(str => {
+			// 可以转化为数字
+			if(+str >= 0){
+				return '' + str
+			}else{
+				return '\\' + str
+			}
+		}).join('');
+		// 正则匹配ip和端口号，存在对应的ip和端口号则需要去除
+		return ipAddress.search(new RegExp(regExp,'i')) !== -1
 	}
 
 	notify(eventType: EventTypes, data: any){

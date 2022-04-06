@@ -1,4 +1,4 @@
-import { EventTypes, filterHttpUrl, ITransport, Plugin } from "monitor-dom";
+import { EventTypes, ITransport, Plugin } from "monitor-dom";
 import { replaceOld } from "src/utils";
 // 内置type，设置MitoXhr对象
 type MitoXhr = {
@@ -12,9 +12,6 @@ const xhrPlugin: Plugin<EventTypes,ITransport> = {
 	monitor(notify){
 		replaceXhr.call(this,notify);
 	},
-	transform: function (){
-
-  }
 }
 // 封装浏览器中原有的xml对象
 interface MITOXMLHttpRequest extends XMLHttpRequest {
@@ -25,7 +22,6 @@ interface MITOXMLHttpRequest extends XMLHttpRequest {
 function replaceXhr(this: ITransport,notify){
   // 获得xhr的原型对象
   const originXhrProtoType = XMLHttpRequest.prototype;
-	const transportThis = this; // 保存transport对象
   const filterFunc = getFilterFunc(this);
   // 修改xhr的open方法
   replaceOld(originXhrProtoType,'open',(originOpen: VoidFunction) => {

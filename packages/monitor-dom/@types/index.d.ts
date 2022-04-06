@@ -40,7 +40,7 @@ declare module 'monitor-dom'{
 		xhr = 'XHR', //xhr
 		fetch = 'FETCH', // fetch
 		hashChange = 'HASHCHANGE', //hash模式下的路由跳转监听
-		hisotry = 'HISTORY', // history模式下的路由跳转
+		hisotryChange = 'HISTORYCHANGE', // history模式下的路由跳转
 		custom = 'CUSTOM' // 用户自己的配置的事件
 	}
 	
