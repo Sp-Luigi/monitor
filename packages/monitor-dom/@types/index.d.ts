@@ -26,8 +26,10 @@ declare module 'monitor-dom'{
 		moniteStatic?: boolean,
 		// 是否监控未处理的promise,默认为true
 		moniteUnhandlePromise?: boolean,
-		// 是否需要过滤该url的请求
-		filterHttpUrl: filterHttpUrl,
+		// 需要过滤和过滤的url请求
+		filterHttpUrl?: filterHttpUrl,
+		// 是否当前的路由模式
+		routeMode: routeMode, // 所属web-application的路由模式，默认为All,会根据routeMode来监听对应的路由事件
 	}
 
 	// sdk的事件类型
@@ -63,6 +65,8 @@ declare module 'monitor-dom'{
 
 	// transport类:  保存基础配置以及发送监控的请求
 	export interface ITransport extends BasicConfig{
+		// 保存options
+		options: Options,
 		// 是否是由sdk发起的监控请求
 		isSdkTransportUrl:(url: string) => boolean,
 		// 获得基础配置
@@ -74,12 +78,10 @@ declare module 'monitor-dom'{
 	// sdk的config
 	export interface SdkConfig {
 		transport: ITransport,
-		options: Options,
 		use: useFunc //初始化插件
 		plugins: Plugin[],
-		routeMode: routeMode, // 所属web-application的路由模式，默认为All,会根据routeMode来监听对应的路由事件
 	}
 
 	// 初始化sdk的内容
-	export type ConstructorType = Omit<SdkConfig,'transport' | 'options' | 'plugins'> & BasicConfig
+	export type ConstructorType = Pick<ITransport,'options'> & BasicConfig
 }

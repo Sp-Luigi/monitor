@@ -22,4 +22,3 @@
     source[name] = wrapped;
   }
 };
-

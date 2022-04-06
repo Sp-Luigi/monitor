@@ -2,25 +2,12 @@ import { BasicConfig, ConstructorType, EventTypes, Options, Plugin, routeMode, S
 import Transport from "./transport";
 
 export default class MonitorWeb implements SdkConfig{
-	options: Options;
 	plugins: Plugin<EventTypes,ITransport>[];
 	transport: ITransport;
-	routeMode: routeMode;
 
-	constructor({
-		app_id,
-		appVersion,
-		serverDomain,
-		routeMode,
-	}: ConstructorType ,options: Options,plugins?: Plugin<EventTypes,ITransport>[]){
-		this.options = options;
-		this.routeMode = routeMode;
+	constructor(transportConfig: ConstructorType,plugins?: Plugin<EventTypes,ITransport>[]){
 		plugins && (this.plugins = plugins);
-		this.transport = new Transport({
-			appVersion,
-			app_id,
-			serverDomain
-		});
+		this.transport = new Transport(transportConfig);
 	}
 
 	// 执行插件的monitor方法来绑定plugin
@@ -29,7 +16,7 @@ export default class MonitorWeb implements SdkConfig{
 		const combinePlugins = [];
 		plugins.every(plugin => {
 			plugin.monitor.call(this.transport,this.transport.notify);
-		},this)
+		},this);
 	}
 
 	// 发送请求到后端的方法以及一些其余的操作

@@ -1,15 +1,16 @@
-import { BasicConfig, EventTypes, ITransport } from "monitor-dom";
+import { ConstructorType, EventTypes, ITransport, Options, routeMode } from "monitor-dom";
 
 // 发送数据或者转换数据给监控后端的类
 export default class Transport implements ITransport{
 	app_id: string;
 	appVersion: string;
 	serverDomain: string;
-
-	constructor({appVersion,app_id,serverDomain}: BasicConfig){
+	options: Options;
+	constructor({appVersion,app_id,serverDomain,options}: ConstructorType){
 		this.appVersion = appVersion;
 		this.app_id = app_id;
 		this.serverDomain = serverDomain;
+		this.options = options;
 	}
 
 	isSdkTransportUrl(url: string){
