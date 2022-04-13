@@ -1,10 +1,6 @@
 declare module 'monitor-dom'{
 	// 路由模式，hash模式则监听hashchange， history则监听h5的内容
-	export const enum routeMode = {
-		All = 'ALL', // 兼容hash和history模式
-		hash = 'HASH', // hash模式
-		history = 'HISTORY' // history模式
-	}
+	export type routeMode = 'All' | 'Hash' | 'History'
 
 	// 是否过滤url的数据类型
 	export type filterHttpUrl = string[] | ((url: string) => boolean)
@@ -28,8 +24,8 @@ declare module 'monitor-dom'{
 		moniteUnhandlePromise?: boolean,
 		// 需要过滤和过滤的url请求
 		filterHttpUrl?: filterHttpUrl,
-		// 是否当前的路由模式
-		routeMode: routeMode, // 所属web-application的路由模式，默认为All,会根据routeMode来监听对应的路由事件
+		// 通过事件映射到后端的路由路径
+		eventHttpRoute: (e: EventTypes) => string 
 	}
 
 	// sdk的事件类型
@@ -41,6 +37,7 @@ declare module 'monitor-dom'{
 		fetch = 'FETCH', // fetch
 		hashChange = 'HASHCHANGE', //hash模式下的路由跳转监听
 		hisotryChange = 'HISTORYCHANGE', // history模式下的路由跳转
+		unhandlePromise = 'UNHANDLEPROMISE', // 未处理的promise
 		custom = 'CUSTOM' // 用户自己的配置的事件
 	}
 	
@@ -54,7 +51,7 @@ declare module 'monitor-dom'{
 		transform?: (this: C,collectedData: any) => any
 	}
 
-	export type useFunc = (plugin: Plugin[]) => void
+	export type useFunc = (plugin: Plugin<any,any>[]) => void
 
 	// sdk的基础配置
 	export interface BasicConfig {
@@ -73,15 +70,18 @@ declare module 'monitor-dom'{
 		getConfig: () => BasicConfig,
 		// 通过不同的事件发送不同的请求以及内容
 		notify: (eventType: EventTypes, data: any) => void,
+		network: any //封装的发送网络接口的class
 	}
 
 	// sdk的config
-	export interface SdkConfig {
+	export interface SdkConfig<T extends EventTypes, C extends BasicConfig>{
 		transport: ITransport,
 		use: useFunc //初始化插件
-		plugins: Plugin[],
 	}
 
 	// 初始化sdk的内容
 	export type ConstructorType = Pick<ITransport,'options'> & BasicConfig
+	export interface userConfig extends ConstructorType {
+		routeMode?: routeMode
+	}
 }

@@ -11,6 +11,7 @@
     "dist",
     "dist/**/*"
   ],
+  "types": "@types",
   "author": "zard <467540052@qq.com\n> LuckyChou710 <>",
   "homepage": "https://github.com/Sp-Luigi/monitor#readme",
   "license": "MIT",
