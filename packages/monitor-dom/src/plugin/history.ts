@@ -1,4 +1,4 @@
-import { EventTypes, ITransport, Plugin } from "monitor-dom";
+import { EventTypes, ITransport, Plugin } from "../typings";
 import { replaceOld } from "src/utils";
 
 let lastLocation = ''; //上次页面的route

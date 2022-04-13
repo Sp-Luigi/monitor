@@ -18,8 +18,6 @@ declare module 'monitor-dom'{
 		moniteFetch?: boolean,
 		// 是否进行js错误的监控，默认为true
 		moniteJsError?: boolean,
-		// 是否进行静态资源的监控，默认为true
-		moniteStatic?: boolean,
 		// 是否监控未处理的promise,默认为true
 		moniteUnhandlePromise?: boolean,
 		// 需要过滤和过滤的url请求

@@ -1,4 +1,4 @@
-import { EventTypes, ITransport, Plugin } from "monitor-dom"
+import { EventTypes, ITransport, Plugin } from "../typings"
 
 
 const hashPlugin:Plugin<EventTypes,ITransport> = {

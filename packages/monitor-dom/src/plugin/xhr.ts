@@ -1,4 +1,4 @@
-import { EventTypes, ITransport, Plugin } from "monitor-dom";
+import { EventTypes, ITransport, Plugin } from "../typings";
 import { replaceOld } from "src/utils";
 // 内置type，设置MitoXhr对象
 type MitoXhr = {
