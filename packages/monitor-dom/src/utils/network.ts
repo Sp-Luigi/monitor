@@ -22,7 +22,6 @@ export default class NetWork implements INetWork {
 	}
 
 	sendByFetch(url: string, data: any){
-		console.log('data,',data)
 		window.fetch(url,{
 			method:'post',
 			body: JSON.stringify(data),
