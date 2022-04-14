@@ -1,5 +1,5 @@
 # monitor-dom
-[简体中文](https://github.com/Sp-Luigi/monitor/README.cn.md)
+[简体中文](https://github.com/Sp-Luigi/monitor/blob/main/README.cn.md)
 ## 👋 Feature
 * monitor xhr ✅
 * monitor fetch ✅
